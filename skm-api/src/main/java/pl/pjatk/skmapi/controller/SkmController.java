@@ -7,35 +7,30 @@ import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.pjatk.skmapi.model.Section;
+import pl.pjatk.skmapi.model.Simulation;
 import pl.pjatk.skmapi.model.Train;
 
+import java.beans.SimpleBeanInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
 public class SkmController {
-    private int x = 10;
-    private int y = 4;
-    private int z = 20;
-    private List<Train> trains;
+    private Simulation simulation;
 
     public SkmController() {
-        this.trains = new ArrayList<>();
-        for (int i = 0; i < x; i++) {
-            List<Section> sections = new ArrayList<>();
-            for (int j = 0; j < y; j++) {
-                sections.add(new Section(z));
-            }
-            trains.add(new Train(sections));
-        }
+        simulation = new Simulation(1, 2, 3);
     }
 
     @GetMapping("/status")
-    public String getStatus() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        String trainsAsJsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(trains);
-//        return "<pre>%s</pre>".formatted(trainsAsJsonString); //Debug
-        return trainsAsJsonString;
+    public String getStatus() {
+        return simulation.getJsonStringStatus();
     }
+
+    @GetMapping("/move")
+    public void move() {
+        simulation.move();
+    }
+
 }
