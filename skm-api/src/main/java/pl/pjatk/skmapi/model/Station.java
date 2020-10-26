@@ -12,10 +12,7 @@ public enum Station {
     STATION7,
     STATION8,
     STATION9,
-    STATION10,
-    STATION11,
-    STATION12,
-    STATION13;
+    STATION10;
     private static Station[] vals = values();
     private static Random rand = new Random();
 

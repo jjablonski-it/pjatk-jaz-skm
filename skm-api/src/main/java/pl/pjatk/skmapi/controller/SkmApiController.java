@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import pl.pjatk.skmapi.model.Simulation;
+import pl.pjatk.skmapi.model.Station;
 import pl.pjatk.skmapi.model.Train;
 
 import java.util.List;
@@ -19,15 +20,23 @@ public class SkmApiController {
         simulation = new Simulation(x, y, z);
     }
 
-    @GetMapping("/move")
+    @GetMapping("/")
+    public List<Train> trains(){
+        return simulation.getTrains();
+    }
 
+    @GetMapping("/stations")
+    public Station[] stations(){
+        return Station.values();
+    }
+
+    @GetMapping("/move")
     public void move() {
         simulation.move();
     }
 
     @GetMapping("/train")
-    public List<Object> trains() {
-
+    public List<Object> train() {
         return simulation.getTrainIds();
     }
 

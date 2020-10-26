@@ -7,6 +7,9 @@ public class Section {
     private int maxSeats;
     List<Person> people;
 
+    public Section() {
+    }
+
     public Section(int maxSeats) {
         people = new ArrayList<>();
         this.maxSeats = maxSeats;

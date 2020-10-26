@@ -14,11 +14,7 @@ public class Train {
     private Random rand = new Random();
     private int size;
 
-    public Train(List<Section> sections, int size) {
-        this.size = size;
-        this.sections = sections;
-        this.station = Station.random();
-        this.forward = rand.nextBoolean();
+    public Train() {
     }
 
     public boolean isFull() {
@@ -50,5 +46,5 @@ public class Train {
         return station;
     }
 
-   
+
 }
