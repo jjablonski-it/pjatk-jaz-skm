@@ -14,8 +14,10 @@ public class Train {
     private List<Section> sections;
     private Station station;
     private Random rand = new Random();
+    private int size;
 
-    public Train(List<Section> sections) {
+    public Train(List<Section> sections, int size) {
+        this.size = size;
         this.sections = sections;
         this.station = Station.random();
         this.forward = rand.nextBoolean();
@@ -28,14 +30,18 @@ public class Train {
         return true;
     }
 
-    public int getPeopleCount(){
+    public int getPeopleCount() {
         int count = 0;
-        for(Section section: sections){
-            for(Person person: section.getPeople()){
+        for (Section section : sections) {
+            for (Person person : section.getPeople()) {
                 count++;
             }
         }
         return count;
+    }
+
+    public double getTakenPercent() {
+        return (1.0 * getPeopleCount() / size) * 100.0;
     }
 
     public boolean isForward() {
