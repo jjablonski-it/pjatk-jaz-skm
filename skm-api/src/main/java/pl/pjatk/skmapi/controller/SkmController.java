@@ -1,8 +1,9 @@
 package pl.pjatk.skmapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.pjatk.skmapi.model.Simulation;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 @RestController
@@ -24,4 +25,13 @@ public class SkmController {
         return simulation.getJsonStringStatus();
     }
 
+    @GetMapping("/trains")
+    public String trains(){
+        return simulation.displayTrains();
+    }
+
+    @GetMapping("/train/{id}")
+    public String train(@PathVariable int id){
+        return simulation.displayTrain(id);
+    }
 }
