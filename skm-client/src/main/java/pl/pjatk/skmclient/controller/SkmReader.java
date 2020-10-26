@@ -6,7 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class SkmReader {
-    private final String URI = "http://localhost:8080/train/0";
+    private final String URI = "http://skmapi:4000/train/0";
 
     @GetMapping("/")
     public String status() {

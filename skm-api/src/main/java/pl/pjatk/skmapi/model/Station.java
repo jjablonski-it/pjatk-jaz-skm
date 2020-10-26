@@ -37,8 +37,6 @@ public enum Station {
         int max;
 
         if ((isFirst() && !forward) || (isLast() && forward)){
-            System.out.println(isFirst());
-            System.out.println(forward);
             return null;
         }
 
