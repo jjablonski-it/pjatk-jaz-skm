@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 public class SkmReader {
-    private final String URI = "http://localhost:4000/";
+    private final String URI = "http://skmapi:4000/";
     private final String trainURI = URI + "/train";
     private RestTemplate template = new RestTemplate();
     private String[] stations;
