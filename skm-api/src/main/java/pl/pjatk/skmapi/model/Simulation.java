@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Simulation {
+    private final int pauseCountOnEnd = 2;
+
     private List<Train> trains;
     private Station station = Station.STATION1;
-    private boolean pause = true;
+    private int pause = pauseCountOnEnd;
 
     public Simulation(int x, int y, int z) {
         this.trains = new ArrayList<>();
@@ -36,10 +38,10 @@ public class Simulation {
     }
 
     private void nextStation() {
-        if (station.isLast() && pause) {
-            pause = false;
+        if (station.isLast() && pause > 0) {
+            pause--;
         } else {
-            pause = true;
+            pause = pauseCountOnEnd;
             station = station.next();
         }
     }
