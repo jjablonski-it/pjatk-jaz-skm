@@ -10,10 +10,10 @@ public class Person {
     private String lastname;
 
     public Person(Station dest) {
-//        Faker faker = new Faker();
+        Faker faker = new Faker();
         this.dest = dest;
-//        name = faker.name().name();
-//        lastname = faker.name().lastName();
+        name = faker.name().firstName();
+        lastname = faker.name().lastName();
     }
 
     public String getName() {

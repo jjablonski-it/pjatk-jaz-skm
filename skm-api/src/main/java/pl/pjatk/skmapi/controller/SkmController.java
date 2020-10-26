@@ -11,7 +11,7 @@ public class SkmController {
     private Simulation simulation;
 
     public SkmController() {
-        simulation = new Simulation(1, 2, 2);
+        simulation = new Simulation(2, 4, 2);
     }
 
     @GetMapping("/status")

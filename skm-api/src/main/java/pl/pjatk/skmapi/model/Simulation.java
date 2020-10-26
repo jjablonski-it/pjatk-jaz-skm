@@ -39,8 +39,8 @@ public class Simulation {
     }
 
     public String getJsonStringStatus() {
-        return toJson(trains);
-//        return "<pre>%s</pre>".formatted(toJson(trains)); //Debug
+//        return toJson(trains);
+        return "<pre>%s</pre>".formatted(toJson(trains)); //Debug
     }
 
     public void move() {
@@ -88,5 +88,4 @@ public class Simulation {
             return toJson("Not found");
         }
     }
-
 }
