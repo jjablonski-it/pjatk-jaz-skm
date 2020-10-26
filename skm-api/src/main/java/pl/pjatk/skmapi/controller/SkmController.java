@@ -11,7 +11,7 @@ public class SkmController {
     private Simulation simulation;
 
     public SkmController() {
-        simulation = new Simulation(1, 1, 2);
+        simulation = new Simulation(1, 2, 2);
     }
 
     @GetMapping("/status")
@@ -25,13 +25,23 @@ public class SkmController {
         return simulation.getJsonStringStatus();
     }
 
-    @GetMapping("/trains")
+    @GetMapping("/train")
     public String trains(){
-        return simulation.displayTrains();
+        return simulation.sendTrains();
     }
 
     @GetMapping("/train/{id}")
     public String train(@PathVariable int id){
-        return simulation.displayTrain(id);
+        return simulation.sendTrain(id);
+    }
+
+    @GetMapping("/train/{id}/section")
+    public String sections(@PathVariable int id){
+        return simulation.sendSections(id);
+    }
+
+    @GetMapping("/train/{trainId}/section/{sectionId}")
+    public String section(@PathVariable int trainId, @PathVariable int sectionId){
+        return simulation.sendTrainSection(trainId, sectionId);
     }
 }

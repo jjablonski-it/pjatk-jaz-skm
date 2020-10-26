@@ -53,17 +53,40 @@ public class Simulation {
         }
     }
 
-    public String displayTrains() {
+    public String sendTrains() {
         List<Object> list = new ArrayList<>();
         trains.stream().forEach(train -> list.add(trains.indexOf(train)));
         return toJson(list);
     }
 
-    public String displayTrain(@PathVariable int id) {
+    public String sendTrain(@PathVariable int id) {
         try {
             return toJson(trains.get(id));
         } catch (IndexOutOfBoundsException e) {
             return toJson("Not found");
         }
     }
+
+    public String sendSections(int trainId) {
+        List<Object> list = new ArrayList<>();
+        Train train = null;
+        try {
+            train = trains.get(trainId);
+        } catch (Exception e) {
+            return toJson("Not found");
+        }
+        Train finalTrain = train;
+        train.getSections().stream().forEach(section -> list.add(finalTrain.getSections().indexOf(section)));
+        return toJson(list);
+    }
+
+    public String sendTrainSection(int trainId, int sectionId) {
+        try {
+            Train train = trains.get(trainId);
+            return toJson(train.getSections().get(sectionId));
+        } catch (IndexOutOfBoundsException e) {
+            return toJson("Not found");
+        }
+    }
+
 }
