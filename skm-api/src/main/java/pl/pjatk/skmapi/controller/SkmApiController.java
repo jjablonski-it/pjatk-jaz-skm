@@ -2,41 +2,36 @@ package pl.pjatk.skmapi.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pl.pjatk.skmapi.model.Simulation;
+import pl.pjatk.skmapi.model.Train;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import java.util.List;
 
 
 @RestController
-public class SkmController {
+public class SkmApiController {
     private Simulation simulation;
 
-    public SkmController() {
+    public SkmApiController() {
         simulation = new Simulation(2, 4, 2);
     }
 
-    @GetMapping("/status")
-    public String getStatus() {
-        return simulation.getJsonStringStatus();
-    }
-
     @GetMapping("/move")
-    public String move() {
+    public void move() {
         simulation.move();
-        return simulation.getJsonStringStatus();
     }
 
     @GetMapping("/train")
-    public String trains(){
-        return simulation.sendTrains();
+    public List<Object> trains(){
+        return simulation.getTrainIds();
     }
 
     @GetMapping("/train/{id}")
-    public String train(@PathVariable int id){
-        return simulation.sendTrain(id);
+    public Train train(@PathVariable int id){
+        return simulation.getTrains().get(id);
     }
 
     @GetMapping("/train/{id}/section")
-    public String sections(@PathVariable int id){
+    public List<Object> sections(@PathVariable int id){
         return simulation.sendSections(id);
     }
 

@@ -3,7 +3,6 @@ package pl.pjatk.skmapi.model;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +38,7 @@ public class Simulation {
     }
 
     public String getJsonStringStatus() {
-//        return toJson(trains);
-        return "<pre>%s</pre>".formatted(toJson(trains)); //Debug
+        return toJson(trains);
     }
 
     public void move() {
@@ -53,31 +51,25 @@ public class Simulation {
         }
     }
 
-    public String sendTrains() {
-        List<Object> list = new ArrayList<>();
-        trains.stream().forEach(train -> list.add(trains.indexOf(train)));
-        return toJson(list);
-    }
-
-    public String sendTrain(@PathVariable int id) {
+    public Train sendTrain(@PathVariable int id) {
         try {
-            return toJson(trains.get(id));
+            return trains.get(id);
         } catch (IndexOutOfBoundsException e) {
-            return toJson("Not found");
+            return null;
         }
     }
 
-    public String sendSections(int trainId) {
+    public List<Object> sendSections(int trainId) {
         List<Object> list = new ArrayList<>();
         Train train = null;
         try {
             train = trains.get(trainId);
         } catch (Exception e) {
-            return toJson("Not found");
+            return null;
         }
         Train finalTrain = train;
         train.getSections().stream().forEach(section -> list.add(finalTrain.getSections().indexOf(section)));
-        return toJson(list);
+        return list;
     }
 
     public String sendTrainSection(int trainId, int sectionId) {
@@ -87,5 +79,11 @@ public class Simulation {
         } catch (IndexOutOfBoundsException e) {
             return toJson("Not found");
         }
+    }
+
+    public List<Object> getTrainIds() {
+        List<Object> list = new ArrayList<>();
+        trains.stream().forEach(train -> list.add(trains.indexOf(train)));
+        return list;
     }
 }
