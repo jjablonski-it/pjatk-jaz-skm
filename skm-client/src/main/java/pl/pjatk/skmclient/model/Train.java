@@ -14,6 +14,54 @@ public class Train {
     private Random rand = new Random();
     private int size;
 
+    @Override
+    public String toString() {
+        return "Train{" +
+                "pauseCountOnEnd=" + pauseCountOnEnd +
+                ", pause=" + pause +
+                ", forward=" + forward +
+                ", sections=" + sections +
+                ", station=" + station +
+                ", size=" + size +
+                '}';
+    }
+
+    public int getPauseCountOnEnd() {
+        return pauseCountOnEnd;
+    }
+
+    public int getPause() {
+        return pause;
+    }
+
+    public void setPause(int pause) {
+        this.pause = pause;
+    }
+
+    public void setForward(boolean forward) {
+        this.forward = forward;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
+    }
+
+    public Random getRand() {
+        return rand;
+    }
+
+    public void setRand(Random rand) {
+        this.rand = rand;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public Train() {
     }
 
@@ -46,5 +94,12 @@ public class Train {
         return station;
     }
 
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
+    }
 
 }

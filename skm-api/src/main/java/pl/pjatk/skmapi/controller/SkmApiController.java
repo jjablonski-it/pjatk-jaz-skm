@@ -24,11 +24,11 @@ public class SkmApiController {
     public List<Train> trains(){
         return simulation.getTrains();
     }
-
-    @GetMapping("/stations")
-    public Station[] stations(){
-        return Station.values();
-    }
+//
+//    @GetMapping("/stations")
+//    public Station[] stations(){
+//        return Station.values();
+//    }
 
     @GetMapping("/move")
     public void move() {
