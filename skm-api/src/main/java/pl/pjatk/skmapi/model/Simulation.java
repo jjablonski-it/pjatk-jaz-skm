@@ -5,13 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Simulation {
-    private final int pauseCountOnEnd = 2;
 
     private List<Train> trains;
     private Station station = Station.STATION1;
-    private int pause = pauseCountOnEnd;
+
+    Random rand = new Random();
 
     public Simulation(int x, int y, int z) {
         this.trains = new ArrayList<>();
@@ -31,23 +32,25 @@ public class Simulation {
             trainsAsJsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(trains);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            trainsAsJsonString = "Error";
+            trainsAsJsonString = e.getMessage();
         }
-//        return "<pre>%s</pre>".formatted(trainsAsJsonString); //Debug
-        return trainsAsJsonString;
+        return "<pre>%s</pre>".formatted(trainsAsJsonString); //Debug
+//        return trainsAsJsonString;
     }
 
-    private void nextStation() {
-        if (station.isLast() && pause > 0) {
-            pause--;
-        } else {
-            pause = pauseCountOnEnd;
-            station = station.next();
+    public void moveTrains() {
+        for (Train train : trains) {
+            train.nextStation();
         }
     }
 
     public void move() {
-        System.out.println(station);
-        nextStation();
+        for(Train train: trains){
+            // Load people to trains
+            train.managePeople();
+
+            // Move all trains
+            train.nextStation();
+        }
     }
 }
