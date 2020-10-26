@@ -1,3 +1,4 @@
 rootProject.name = 'skm'
 
 include 'skm-api'
+include 'skm-client'
