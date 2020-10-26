@@ -28,6 +28,16 @@ public class Train {
         return true;
     }
 
+    public int getPeopleCount(){
+        int count = 0;
+        for(Section section: sections){
+            for(Person person: section.getPeople()){
+                count++;
+            }
+        }
+        return count;
+    }
+
     public boolean isForward() {
         return forward;
     }
