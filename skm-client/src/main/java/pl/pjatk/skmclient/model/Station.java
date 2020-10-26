@@ -1,4 +1,4 @@
-package pl.pjatk.skmapi.model;
+package pl.pjatk.skmclient.model;
 
 import java.util.Random;
 
@@ -7,15 +7,7 @@ public enum Station {
     STATION2,
     STATION3,
     STATION4,
-    STATION5,
-    STATION6,
-    STATION7,
-    STATION8,
-    STATION9,
-    STATION10,
-    STATION11,
-    STATION12,
-    STATION13;
+    STATION5;
     private static Station[] vals = values();
     private static Random rand = new Random();
 
@@ -61,6 +53,6 @@ public enum Station {
     }
 
     public static Station random() {
-        return vals[rand.nextInt(vals.length-2)+1];
+        return vals[rand.nextInt(vals.length)];
     }
 }

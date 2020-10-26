@@ -13,6 +13,7 @@ import java.util.List;
 public class SkmApiController {
     private Simulation simulation;
 
+
     @Autowired
     public SkmApiController(@Value("${envX}") final int x, @Value("${envY}") final int y, @Value("${envZ}") final int z) {
         simulation = new Simulation(x, y, z);
