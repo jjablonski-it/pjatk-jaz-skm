@@ -11,7 +11,7 @@ public enum Station {
     STATION8,
     STATION9,
     STATION10;
-    public boolean equalsTo(String string){
-        return this.name().equals(string);
+
+    Station() {
     }
 }

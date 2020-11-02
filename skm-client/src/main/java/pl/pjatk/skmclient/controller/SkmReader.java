@@ -1,15 +1,13 @@
 package pl.pjatk.skmclient.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import pl.pjatk.skmclient.model.Section;
 import pl.pjatk.skmclient.model.Station;
 import pl.pjatk.skmclient.model.Train;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,16 +33,16 @@ public class SkmReader {
     @GetMapping("/{trainId}")
     public String train(@PathVariable("trainId") int trainId) {
         template.getForObject(URI + "/move", String.class);
-        Train result = template.getForObject(trainURI + "/" + trainId, Train.class);
-        String trainInfo = template.getForObject(trainURI + "/" + trainId, String.class);
+        Train train = template.getForObject(trainURI + "/" + trainId, Train.class);
         List<Integer> sections = Arrays.asList(template.getForObject(trainURI + "/" + trainId + "/section", Integer[].class));
+
         StringBuilder builder = new StringBuilder("<h1>Train %d</h1>".formatted(trainId));
         StringBuilder mapBuilder = new StringBuilder("");
 
         if (stations != null)
             for (Station station : stations) {
-                boolean current = result.getStation() == station;
-                mapBuilder.append("( <b>%s</b> ) - %s - ".formatted(current ? (result.isForward() ? ">" : "<") : " ", current ? "<b>%s</b>".formatted(station) : station));
+                boolean current = train.getStation() == station;
+                mapBuilder.append("( <b>%s</b> ) - %s - ".formatted(current ? (train.isForward() ? ">" : "<") : " ", current ? "<b>%s</b>".formatted(station) : station));
             }
         mapBuilder.append("<br>");
 
@@ -52,12 +50,15 @@ public class SkmReader {
             builder.append("<br><a href='/%d/section/%d'>Section id: %d</a>".formatted(trainId, sectionId, sectionId));
         });
 
-        return mapBuilder.toString() + trainInfo + builder.toString();
+        String nextButton = "<br><a href='/%d'><button>Next station</button></a>".formatted(trainId);
+        String percentage = "Taken percent: " + train.getTakenPercent() + "%";
+
+        return mapBuilder.toString() + nextButton + percentage + builder.toString();
     }
 
     @GetMapping("/{trainId}/section/{sectionId}")
-    public String section(@PathVariable("trainId") int trainId, @PathVariable("sectionId") int sectionId) {
-        String result = template.getForObject(trainURI + "/" + trainId + "/section/" + sectionId, String.class);
+    public Section section(@PathVariable("trainId") int trainId, @PathVariable("sectionId") int sectionId) {
+        Section result = template.getForObject(trainURI + "/" + trainId + "/section/" + sectionId, Section.class);
 
         return result;
     }

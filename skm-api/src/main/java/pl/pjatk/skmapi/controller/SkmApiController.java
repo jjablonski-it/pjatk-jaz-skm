@@ -3,8 +3,8 @@ package pl.pjatk.skmapi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import pl.pjatk.skmapi.model.Section;
 import pl.pjatk.skmapi.model.Simulation;
-import pl.pjatk.skmapi.model.Station;
 import pl.pjatk.skmapi.model.Train;
 
 import java.util.List;
@@ -24,11 +24,6 @@ public class SkmApiController {
     public List<Train> trains(){
         return simulation.getTrains();
     }
-//
-//    @GetMapping("/stations")
-//    public Station[] stations(){
-//        return Station.values();
-//    }
 
     @GetMapping("/move")
     public void move() {
@@ -36,7 +31,7 @@ public class SkmApiController {
     }
 
     @GetMapping("/train")
-    public List<Object> train() {
+    public List<Integer> train() {
         return simulation.getTrainIds();
     }
 
@@ -46,12 +41,12 @@ public class SkmApiController {
     }
 
     @GetMapping("/train/{id}/section")
-    public List<Object> sections(@PathVariable int id) {
-        return simulation.sendSections(id);
+    public List<Integer> sections(@PathVariable int id) {
+        return simulation.getSectionIds(id);
     }
 
     @GetMapping("/train/{trainId}/section/{sectionId}")
-    public String section(@PathVariable int trainId, @PathVariable int sectionId) {
-        return simulation.sendTrainSection(trainId, sectionId);
+    public Section getSection(@PathVariable int trainId, @PathVariable int sectionId) {
+        return simulation.getTrainSection(trainId, sectionId);
     }
 }

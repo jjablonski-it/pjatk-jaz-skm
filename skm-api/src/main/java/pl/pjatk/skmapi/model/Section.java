@@ -8,6 +8,18 @@ public class Section {
     private int maxSeats;
     List<Person> people;
 
+    public int getMaxSeats() {
+        return maxSeats;
+    }
+
+    public int getSeatsTaken() {
+        return people.size();
+    }
+
+    public double getTakenPercent() {
+        return 1.0 * getSeatsTaken() / maxSeats * 100.0;
+    }
+
     public Section(int maxSeats) {
         people = new ArrayList<>();
         this.maxSeats = maxSeats;
@@ -25,7 +37,7 @@ public class Section {
         return false;
     }
 
-    public void freeSeats(List<Person> peopleLeaving){
+    public void freeSeats(List<Person> peopleLeaving) {
         people.removeAll(peopleLeaving);
     }
 

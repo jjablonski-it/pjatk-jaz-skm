@@ -1,16 +1,10 @@
 package pl.pjatk.skmapi.model;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Simulation {
     private List<Train> trains;
-    Random rand = new Random();
 
     public List<Train> getTrains() {
         return trains;
@@ -27,20 +21,6 @@ public class Simulation {
         }
     }
 
-    private String toJson(Object O) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(O);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return e.getMessage();
-        }
-    }
-
-    public String getJsonStringStatus() {
-        return toJson(trains);
-    }
-
     public void move() {
         for (Train train : trains) {
             // Load people to trains
@@ -51,39 +31,21 @@ public class Simulation {
         }
     }
 
-    public Train sendTrain(@PathVariable int id) {
-        try {
-            return trains.get(id);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
-    }
-
-    public List<Object> sendSections(int trainId) {
-        List<Object> list = new ArrayList<>();
-        Train train = null;
-        try {
-            train = trains.get(trainId);
-        } catch (Exception e) {
-            return null;
-        }
-        Train finalTrain = train;
-        train.getSections().stream().forEach(section -> list.add(finalTrain.getSections().indexOf(section)));
-        return list;
-    }
-
-    public String sendTrainSection(int trainId, int sectionId) {
-        try {
-            Train train = trains.get(trainId);
-            return toJson(train.getSections().get(sectionId));
-        } catch (IndexOutOfBoundsException e) {
-            return toJson("Not found");
-        }
-    }
-
-    public List<Object> getTrainIds() {
-        List<Object> list = new ArrayList<>();
+    public List<Integer> getTrainIds() {
+        List<Integer> list = new ArrayList<>();
         trains.stream().forEach(train -> list.add(trains.indexOf(train)));
         return list;
+    }
+
+    public List<Integer> getSectionIds(int id) {
+        List<Integer> list = new ArrayList<>();
+        Train train = trains.get(id);
+        train.getSections().stream().forEach(section -> list.add(train.getSections().indexOf(section)));
+        return list;
+    }
+
+    public Section getTrainSection(int trainId, int sectionId) {
+        Train train = trains.get(trainId);
+        return train.getSections().get(sectionId);
     }
 }

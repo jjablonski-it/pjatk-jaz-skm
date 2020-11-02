@@ -1,6 +1,5 @@
 package pl.pjatk.skmclient.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -13,17 +12,12 @@ public class Train {
     private Station station;
     private Random rand = new Random();
     private int size;
+    private int peopleCount;
+    private double takenPercent;
+    private boolean isFull;
 
-    @Override
-    public String toString() {
-        return "Train{" +
-                "pauseCountOnEnd=" + pauseCountOnEnd +
-                ", pause=" + pause +
-                ", forward=" + forward +
-                ", sections=" + sections +
-                ", station=" + station +
-                ", size=" + size +
-                '}';
+    public Train() {
+
     }
 
     public int getPauseCountOnEnd() {
@@ -38,8 +32,24 @@ public class Train {
         this.pause = pause;
     }
 
+    public boolean isForward() {
+        return forward;
+    }
+
     public void setForward(boolean forward) {
         this.forward = forward;
+    }
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
+    }
+
+    public Station getStation() {
+        return station;
     }
 
     public void setStation(Station station) {
@@ -62,44 +72,27 @@ public class Train {
         this.size = size;
     }
 
-    public Train() {
-    }
-
-    public boolean isFull() {
-        for (Section section : sections) {
-            if (!section.isFull()) return false;
-        }
-        return true;
-    }
-
     public int getPeopleCount() {
-        int count = 0;
-        for (Section section : sections) {
-            for (Person person : section.getPeople()) {
-                count++;
-            }
-        }
-        return count;
+        return peopleCount;
+    }
+
+    public void setPeopleCount(int peopleCount) {
+        this.peopleCount = peopleCount;
     }
 
     public double getTakenPercent() {
-        return (1.0 * getPeopleCount() / size) * 100.0;
+        return takenPercent;
     }
 
-    public boolean isForward() {
-        return forward;
+    public void setTakenPercent(double takenPercent) {
+        this.takenPercent = takenPercent;
     }
 
-    public Station getStation() {
-        return station;
+    public boolean isFull() {
+        return isFull;
     }
 
-    public List<Section> getSections() {
-        return sections;
+    public void setFull(boolean full) {
+        isFull = full;
     }
-
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
-    }
-
 }
