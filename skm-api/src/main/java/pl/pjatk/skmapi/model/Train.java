@@ -101,7 +101,7 @@ public class Train {
         return section;
     }
 
-    private void loadPeople() {
+    public void loadPeople() {
         List<Person> peopleWaiting = generatePeople();
         for (Person person : peopleWaiting) {
             if (isFull()) return;
@@ -110,7 +110,7 @@ public class Train {
         }
     }
 
-    private void unloadPeople() {
+    public void unloadPeople() {
         for (Section section : sections) {
             List<Person> peopleLeaving = new ArrayList<>();
             for (Person person : section.getPeople()) {
@@ -120,10 +120,5 @@ public class Train {
             }
             section.freeSeats(peopleLeaving);
         }
-    }
-
-    public void managePeople() {
-        unloadPeople();
-        loadPeople();
     }
 }

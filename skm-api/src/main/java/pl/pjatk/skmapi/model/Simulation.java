@@ -24,7 +24,8 @@ public class Simulation {
     public void move() {
         for (Train train : trains) {
             // Load people to trains
-            train.managePeople();
+            train.unloadPeople();
+            train.loadPeople();
 
             // Move all trains
             train.nextStation();
