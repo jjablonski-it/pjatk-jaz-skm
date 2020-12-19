@@ -1,12 +1,21 @@
 package pl.pjatk.skmapi.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "sections")
 public class Section {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private int maxSeats;
-    List<Person> people;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    public List<Person> people;
 
     public int getMaxSeats() {
         return maxSeats;
@@ -18,6 +27,9 @@ public class Section {
 
     public double getTakenPercent() {
         return 1.0 * getSeatsTaken() / maxSeats * 100.0;
+    }
+
+    public Section() {
     }
 
     public Section(int maxSeats) {

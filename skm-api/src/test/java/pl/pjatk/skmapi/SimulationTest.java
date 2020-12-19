@@ -13,7 +13,7 @@ class SimulationTest {
 
 	@BeforeEach
 	void setUp(){
-		sim = new Simulation(2, 3, 4);
+		sim = Simulation.getInstance(2, 3, 4);
 	}
 
 	@Test
@@ -22,7 +22,4 @@ class SimulationTest {
 		Assert.assertEquals(sim.getTrains().get(0).getSections().size(), 3);
 		Assert.assertEquals(sim.getTrains().get(0).getSections().get(0).getMaxSeats(), 4);
 	}
-
-
-
 }

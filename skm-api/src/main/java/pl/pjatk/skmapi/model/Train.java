@@ -1,16 +1,27 @@
 package pl.pjatk.skmapi.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Train {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column
+    private boolean forward;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Section> sections;
+
+    @Enumerated(EnumType.ORDINAL)
+    private Station station;
+
     private final int pauseCountOnEnd = 2;
     private int pause = pauseCountOnEnd;
 
-    private boolean forward;
-    private List<Section> sections;
-    private Station station;
     private Random rand = new Random();
     private int size;
 
@@ -36,6 +47,30 @@ public class Train {
             }
         }
         return count;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setForward(boolean forward) {
+        this.forward = forward;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public double getTakenPercent() {

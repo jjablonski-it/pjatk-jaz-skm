@@ -17,7 +17,7 @@ public class SkmApiController {
 
     @Autowired
     public SkmApiController(@Value("${envX}") final int x, @Value("${envY}") final int y, @Value("${envZ}") final int z) {
-        simulation = new Simulation(x, y, z);
+        simulation = Simulation.getInstance(x, y, z);
     }
 
     @GetMapping("/")
