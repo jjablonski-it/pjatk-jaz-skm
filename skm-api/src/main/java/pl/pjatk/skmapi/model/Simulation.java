@@ -29,16 +29,6 @@ public class Simulation {
         return simulation;
     }
 
-    public void move() {
-        for (Train train : trains) {
-            // Load people to trains
-            train.unloadPeople();
-            train.loadPeople();
-
-            // Move all trains
-            train.nextStation();
-        }
-    }
 
     public List<Integer> getTrainIds() {
         List<Integer> list = new ArrayList<>();

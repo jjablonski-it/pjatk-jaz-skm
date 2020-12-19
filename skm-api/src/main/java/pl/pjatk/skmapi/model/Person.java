@@ -1,12 +1,13 @@
 package pl.pjatk.skmapi.model;
 
 import com.github.javafaker.Faker;
+import pl.pjatk.skmapi.service.DbEntity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "people")
-public class Person {
+public class Person implements DbEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
