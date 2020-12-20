@@ -2,10 +2,11 @@ package pl.pjatk.skmapi.model;
 
 import com.github.javafaker.Faker;
 import pl.pjatk.skmapi.service.DbEntity;
+
+import javax.persistence.Entity;
 import java.util.Locale;
 
-public class Person implements DbEntity {
-    private long id;
+public class Person {
     Station dest;
     private String name;
     private String lastname;
@@ -20,12 +21,8 @@ public class Person implements DbEntity {
         lastname = faker.name().lastName();
     }
 
-    public long getId() {
-        return id;
-    }
 
     public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -39,4 +36,14 @@ public class Person implements DbEntity {
     public Station getDest() {
         return dest;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+
 }

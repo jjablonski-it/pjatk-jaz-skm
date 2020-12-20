@@ -153,7 +153,7 @@ public class Train implements DbEntity {
         for (Section section : sections) {
             List<Person> peopleLeaving = new ArrayList<>();
             for (Person person : section.getPeople()) {
-                if (person.dest == station) {
+                if (person.getDest() == station) {
                     peopleLeaving.add(person);
                 }
             }

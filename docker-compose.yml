@@ -4,7 +4,20 @@ services:
     build: ./skm-api
     ports:
       - '4000:4000'
+    restart: on-failure:5
+    depends_on:
+      - skmdb
   skmclient:
     build: ./skm-client
     ports:
       - '3000:3000'
+  skmdb:
+    build: ./db
+    ports:
+      - '3306:3306'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: trainsdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pwd

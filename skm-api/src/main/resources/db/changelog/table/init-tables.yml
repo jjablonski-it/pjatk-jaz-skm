@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2020_12_20-initial-tables
+      author: jakub.jablonski
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: trains
+      changes:
+        - createTable:
+            - tableName: trains
+            - column:
+                name: id
+                type: INT
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: id
+#            - column:
+#                name: forward
+#                type: BOOL
+#                constrains:
+#                  nullable: false
+#        - createTable:
+#            - tableName: sections
+#            - column:
+#                name: id
+#                type: INT
+#                autoIncrement: true
+#                constrains:
+#                  nullable: false
+#                  primaryKey: true
+#                  primaryKeyName: id
+#            - column:
+#                name: train_id
+#                type: INT
+#                constrains:
+#                  nullable: true
+#                  foreignKey: true
+#                  foreignKeyName:

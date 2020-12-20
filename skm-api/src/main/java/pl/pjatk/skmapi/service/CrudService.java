@@ -1,15 +1,15 @@
 package pl.pjatk.skmapi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.pjatk.skmapi.repository.CrudRepo;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class CrudService<T extends DbEntity> {
-    CrudRepo<T> repository;
+    JpaRepository<T, Long> repository;
 
-    public CrudService(CrudRepo<T> repository){
+    public CrudService(JpaRepository<T, Long> repository){
         this.repository = repository;
     }
 
