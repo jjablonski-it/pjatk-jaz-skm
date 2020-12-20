@@ -29,7 +29,6 @@ public class Simulation {
         return simulation;
     }
 
-
     public List<Integer> getTrainIds() {
         List<Integer> list = new ArrayList<>();
         trains.stream().forEach(train -> list.add(trains.indexOf(train)));

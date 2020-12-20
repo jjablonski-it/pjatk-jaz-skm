@@ -20,6 +20,8 @@ public abstract class CrudService<T extends DbEntity> {
         return repository.findById(id).orElse(null);
     }
 
+    public T add(T t){ return repository.save(t);}
+
     public void deleteById(Long id){
         repository.deleteById(id);
     }
