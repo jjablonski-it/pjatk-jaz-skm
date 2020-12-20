@@ -2,11 +2,11 @@ package pl.pjatk.skmapi;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.pjatk.skmapi.model.Person;
 import pl.pjatk.skmapi.model.Station;
 
-@SpringBootTest
 public class PersonTest {
     @Test
     void twoPeopleShouldHaveDifferentNames(){

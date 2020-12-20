@@ -1,5 +1,6 @@
 package pl.pjatk.skmapi.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pl.pjatk.skmapi.repository.CrudRepo;
 
 import java.util.List;

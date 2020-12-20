@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.pjatk.skmapi.model.Simulation;
 
-@SpringBootTest
 class SimulationTest {
 	Simulation sim;
 

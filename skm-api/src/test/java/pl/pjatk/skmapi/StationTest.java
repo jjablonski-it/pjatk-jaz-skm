@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.pjatk.skmapi.model.Station;
 
-@SpringBootTest
 public class StationTest {
     @Test
     void station1ShouldBeFirst(){

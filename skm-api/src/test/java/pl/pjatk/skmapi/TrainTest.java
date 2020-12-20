@@ -12,7 +12,6 @@ import pl.pjatk.skmapi.model.Train;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@SpringBootTest
 public class TrainTest {
     Train train;
 
@@ -25,7 +24,7 @@ public class TrainTest {
     }
 
     @Test
-    void traninShouldHave2Sections5SeatsEachAndHavePropertiesSet(){
+    void trainShouldHave2Sections5SeatsEachAndHavePropertiesSet(){
         Assert.assertNotNull(train);
         Assert.assertEquals(2, train.getSections().size());
         Assert.assertEquals(5 ,train.getSections().get(0).getMaxSeats());
