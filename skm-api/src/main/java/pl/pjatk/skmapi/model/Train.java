@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 @Entity
-@Table(name = "train")
+@Table(name = "trains")
 public class Train implements DbEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
