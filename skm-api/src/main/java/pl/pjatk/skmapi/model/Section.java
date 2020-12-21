@@ -20,7 +20,7 @@ public class Section implements DbEntity {
     @Column(name = "max_seats")
     private int maxSeats;
 
-    @Transient
+    @OneToMany(mappedBy = "section", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Person> people;
 
     public int getMaxSeats() {
@@ -80,6 +80,7 @@ public class Section implements DbEntity {
     public boolean takeSeat(Person person) {
         if (people.size() < maxSeats) {
             people.add(person);
+            person.setSection(this);
             return true;
         }
         return false;

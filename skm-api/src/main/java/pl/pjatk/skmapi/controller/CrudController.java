@@ -26,7 +26,7 @@ public abstract class CrudController<T extends DbEntity> {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> getById(@PathVariable("id") long id) throws NotFoundException {
+    public ResponseEntity<T> getById(@PathVariable("id") Long id) throws NotFoundException {
         try {
             var payload = service.getById(id);
             return new ResponseEntity<>(payload, HttpStatus.OK);
@@ -36,7 +36,7 @@ public abstract class CrudController<T extends DbEntity> {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable("id") long id) throws NotFoundException {
+    public ResponseEntity deleteById(@PathVariable("id") Long id) throws NotFoundException {
         try {
             service.deleteById(id);
             return new ResponseEntity(HttpStatus.OK);

@@ -6,7 +6,7 @@ databaseChangeLog:
         - onFail: MARK_RAN
           not:
             tableExists:
-              tableName: trains, sections
+              tableName: trains, sections, people
       changes:
         - createTable:
             - tableName: trains
@@ -38,7 +38,7 @@ databaseChangeLog:
             - tableName: sections
             - column:
                 name: id
-                type: INT
+                type: int
                 autoIncrement: true
                 constraints:
                   nullable: false
@@ -51,9 +51,42 @@ databaseChangeLog:
                   nullable: false
             - column:
                 name: train_id
-                type: INT
+                type: int
                 constraints:
                   nullable: false
                   foreignKey: true
                   foreignKeyName: fk_train
                   referenes: train(id)
+        - createTable:
+            - tableName: people
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: pk_person
+            - column:
+                name: name
+                type: varchar(50)
+                constraints:
+                  nullable: false
+            - column:
+                name: lastname
+                type: varchar(50)
+                constraints:
+                  nullable: false
+            - column:
+                name: dest
+                type: int
+                constraints:
+                  nullable: false
+            - column:
+                name: section_id
+                type: int
+                constraints:
+                  nullable: false
+                  foreignKey: true
+                  foreignKeyName: fk_section
+                  referenes: section(id)

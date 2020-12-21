@@ -111,9 +111,6 @@ public class Train implements DbEntity {
         }
         if (move)
             station = station.next(forward);
-
-        System.out.println("Train pause: " + pause);
-
     }
 
     private List<Person> generatePeople() {
@@ -123,7 +120,6 @@ public class Train implements DbEntity {
         for (int i = 0; i < peopleCount; i++) {
             Station randStation = station.randNextStation(forward);
             if (randStation != null) {
-
                 people.add(new Person(randStation));
             }
         }

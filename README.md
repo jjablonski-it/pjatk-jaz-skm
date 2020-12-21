@@ -20,5 +20,6 @@ Przerobic nasz symulator SKM tak, by:
   -[x] wykorzystac liquibase do zainicjalizowania i obslugi zmian w schemie bazodanowej,
       -[x] Controller powinien teraz uzywac ResponseEntity do komunikacji zwrotnej + 
       -[x] odpowiednie HttpStatus (prosta obsluga bledow -> blad = kod 500),
-  -[ ] pociagi powinny dalej jezdzic, ladowac i rozladowywac ludzi, robic postoje, zawracac na stacjach koncowych.
+  -[x] pociagi powinny dalej jezdzic, ladowac i rozladowywac ludzi, robic postoje, zawracac na stacjach koncowych.
+  -[ ] Client update
   -[ ] TESTY
