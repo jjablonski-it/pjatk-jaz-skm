@@ -33,7 +33,7 @@ public abstract class CrudService<T extends DbEntity> {
        return getAll().stream().map(t -> t.getId()).collect(Collectors.toList());
     }
 
-    public T updateAndSave(T t) throws BadRequestException, NotFoundException {
+    public T update(T t) throws BadRequestException, NotFoundException {
         if(t.getId() == null) throw new BadRequestException();
         var entity = getUpdatedEntity(t);
         repository.save(entity);

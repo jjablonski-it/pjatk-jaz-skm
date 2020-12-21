@@ -17,7 +17,7 @@ public class Train implements DbEntity {
     private boolean forward;
     private Station station;
 
-    @OneToMany(mappedBy = "train", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "train", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Section> sections;
 
 //    @Enumerated(EnumType.ORDINAL

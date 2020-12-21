@@ -13,10 +13,9 @@ public class Section implements DbEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "train_id")
     private Train train;
-
 
     @Column(name = "max_seats")
     private int maxSeats;
@@ -41,7 +40,11 @@ public class Section implements DbEntity {
         this.id = id;
     }
 
-    public Train getTrain() {
+    public Long getTrainId() {
+        return train.getId();
+    }
+
+    public Train _getTrain() {
         return train;
     }
 
@@ -51,6 +54,10 @@ public class Section implements DbEntity {
 
     public void setPeople(List<Person> people) {
         this.people = people;
+    }
+
+    public void setMaxSeats(int maxSeats) {
+        this.maxSeats = maxSeats;
     }
 
     public double getTakenPercent() {

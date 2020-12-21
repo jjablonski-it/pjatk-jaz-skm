@@ -26,9 +26,13 @@ public class TrainService extends CrudService<Train> {
         if (currentTrain.isEmpty()) throw new NotFoundException();
 
         var currentTrainObj = currentTrain.get();
-        currentTrainObj.setForward(train.isForward());
-        currentTrainObj.setSections(train.getSections());
-        currentTrainObj.setStation(train.getStation());
+
+        if ((Boolean) train.isForward() != null)
+            currentTrainObj.setForward(train.isForward());
+        if (train.getSections() != null)
+            currentTrainObj.setSections(train.getSections());
+        if (train.getStation() != null)
+            currentTrainObj.setStation(train.getStation());
         return currentTrainObj;
 
     }
