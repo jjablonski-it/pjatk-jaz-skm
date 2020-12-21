@@ -3,5 +3,5 @@ databaseChangeLog:
       file: db/changelog/table/init-tables.yml
   - include:
       file: db/changelog/data/init-data-insert-trains.yml
-#  - include:
-#      file: db/changelog/data/init-data-insert-sections.yml
+  - include:
+      file: db/changelog/data/init-data-insert-sections.yml

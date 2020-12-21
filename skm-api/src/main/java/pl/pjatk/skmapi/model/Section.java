@@ -17,6 +17,7 @@ public class Section implements DbEntity {
     @JoinColumn(name = "train_id")
     private Train train;
 
+    @Column(name = "max_seats")
     private int maxSeats;
 
     @Transient
@@ -27,6 +28,7 @@ public class Section implements DbEntity {
     }
 
     public int getSeatsTaken() {
+        if (people == null) return 0;
         return people.size();
     }
 
@@ -43,6 +45,7 @@ public class Section implements DbEntity {
     }
 
     public Section() {
+        people = new ArrayList<>();
     }
 
     public Section(int maxSeats) {
@@ -67,6 +70,7 @@ public class Section implements DbEntity {
     }
 
     public boolean isFull() {
+        if (people == null) return false;
         return people.size() == maxSeats;
     }
 }

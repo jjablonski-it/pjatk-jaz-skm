@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id:  2020_12_10-insert-initial-data-trains
+      id:  2020_12_20-insert-initial-data-trains
       author:  jakub.jablonski
       changes:
         - sqlFile:

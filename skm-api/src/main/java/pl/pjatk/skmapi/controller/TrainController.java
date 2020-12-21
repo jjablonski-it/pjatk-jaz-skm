@@ -4,11 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.pjatk.skmapi.model.Train;
 import pl.pjatk.skmapi.service.CrudService;
+import pl.pjatk.skmapi.service.TrainService;
 
 @RestController
 @RequestMapping("/train")
 public class TrainController extends CrudController<Train>{
-    protected TrainController(CrudService<Train> service) {
+    protected TrainController(TrainService service) {
         super(service);
     }
 }

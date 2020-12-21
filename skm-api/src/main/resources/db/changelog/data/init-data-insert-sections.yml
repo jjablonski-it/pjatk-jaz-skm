@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id:  2020_12_20-insert-initial-data-sections
+      author:  jakub.jablonski
+      changes:
+        - sqlFile:
+            splitStatements: true
+            stripComments: true
+            path: db/changelog/data/sql/insert-sections.sql
