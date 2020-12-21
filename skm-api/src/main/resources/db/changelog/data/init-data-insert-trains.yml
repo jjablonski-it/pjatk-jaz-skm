@@ -1,14 +1,9 @@
-databaseChangelog:
+databaseChangeLog:
   - changeSet:
-      id: 2020_12_20-insert-trains
-      author: jakub.jablonski
+      id:  2020_12_10-insert-initial-data-trains
+      author:  jakub.jablonski
       changes:
-        - insert:
-            tableName: trains
-            columns:
-              - column
-                name: forward
-                value: true
-              - column
-                name: forward
-                value: false
+        - sqlFile:
+            splitStatements: true
+            stripComments: true
+            path: db/changelog/data/sql/insert-trains.sql

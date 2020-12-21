@@ -13,6 +13,10 @@ public class Section implements DbEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "train_id")
+    private Train train;
+
     private int maxSeats;
 
     @Transient

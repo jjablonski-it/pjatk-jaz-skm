@@ -14,19 +14,22 @@ public class Train implements DbEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column
     private boolean forward;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Section> sections;
-
-    @Enumerated(EnumType.ORDINAL)
     private Station station;
 
+    @OneToMany(mappedBy = "train", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Section> sections;
+
+//    @Enumerated(EnumType.ORDINAL
+
+    @Transient
     private final int pauseCountOnEnd = 2;
     private int pause = pauseCountOnEnd;
 
-    private Random rand = new Random();
+    @Transient
+    private final Random rand = new Random();
+
+    @Transient
     private int size;
 
     public Train(List<Section> sections, int size) {
@@ -51,6 +54,9 @@ public class Train implements DbEntity {
             }
         }
         return count;
+    }
+
+    public Train() {
     }
 
     public long getId() {

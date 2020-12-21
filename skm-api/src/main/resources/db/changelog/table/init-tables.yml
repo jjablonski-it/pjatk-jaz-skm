@@ -6,10 +6,36 @@ databaseChangeLog:
         - onFail: MARK_RAN
           not:
             tableExists:
-              tableName: trains
+              tableName: trains, sections,
       changes:
         - createTable:
             - tableName: trains
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: pk_train
+            - column:
+                name: forward
+                type: boolean
+                constraints:
+                  nullable: false
+            - column:
+                name: pause
+                type: int
+                constraints:
+                  nullable: false
+                  defaultValue: 0
+            - column:
+                name: station
+                type: int
+                constraints:
+                  nullable: false
+        - createTable:
+            - tableName: sections
             - column:
                 name: id
                 type: INT
@@ -17,26 +43,17 @@ databaseChangeLog:
                 constraints:
                   nullable: false
                   primaryKey: true
-                  primaryKeyName: id
-#            - column:
-#                name: forward
-#                type: BOOL
-#                constrains:
-#                  nullable: false
-#        - createTable:
-#            - tableName: sections
-#            - column:
-#                name: id
-#                type: INT
-#                autoIncrement: true
-#                constrains:
-#                  nullable: false
-#                  primaryKey: true
-#                  primaryKeyName: id
-#            - column:
-#                name: train_id
-#                type: INT
-#                constrains:
-#                  nullable: true
-#                  foreignKey: true
-#                  foreignKeyName:
+                  primaryKeyName: pk_section
+            - column:
+                name: max_seats
+                type: int
+                constraints:
+                  nullable: false
+            - column:
+                name: train_id
+                type: INT
+                constraints:
+                  nullable: false
+                  foreignKey: true
+                  foreignKeyName: fk_train
+                  referenes: train(id)

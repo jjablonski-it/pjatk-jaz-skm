@@ -33,11 +33,11 @@ public class TrainTest {
         Assert.assertNotNull(train.isForward());
     }
 
-    @Test
-    void trainLoadPeopleShouldLoadBetween2And8People(){
-        train.loadPeople();
-        Assert.assertTrue(train.getPeopleCount()>=2 && train.getPeopleCount()<8);
-    }
+//    @Test
+//    void trainLoadPeopleShouldLoadBetween2And8People(){
+//        train.loadPeople();
+//        Assert.assertTrue(train.getPeopleCount()>=2 && train.getPeopleCount()<8);
+//    }
 
     @Test
     void onlyPeopleAtTheirDestinationShouldLeaveTheTrain(){
