@@ -17,6 +17,7 @@ public class Section implements DbEntity {
     @JoinColumn(name = "train_id")
     private Train train;
 
+
     @Column(name = "max_seats")
     private int maxSeats;
 
@@ -38,6 +39,18 @@ public class Section implements DbEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
+    public void setPeople(List<Person> people) {
+        this.people = people;
     }
 
     public double getTakenPercent() {

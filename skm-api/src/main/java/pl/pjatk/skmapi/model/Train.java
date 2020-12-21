@@ -29,11 +29,8 @@ public class Train implements DbEntity {
     @Transient
     private final Random rand = new Random();
 
-    @Transient
-    private int size;
-
     public Train(List<Section> sections, int size) {
-        this.size = size;
+//        this.size = size;
         this.sections = sections;
         this.station = Station.random();
         this.forward = rand.nextBoolean();
@@ -77,15 +74,12 @@ public class Train implements DbEntity {
     }
 
     public int getSize() {
+        int size = this.sections.stream().mapToInt(Section::getMaxSeats).sum();
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
-
     public double getTakenPercent() {
-        return (1.0 * getPeopleCount() / size) * 100.0;
+        return (1.0 * getPeopleCount() / getSize()) * 100.0;
     }
 
     public boolean isForward() {
