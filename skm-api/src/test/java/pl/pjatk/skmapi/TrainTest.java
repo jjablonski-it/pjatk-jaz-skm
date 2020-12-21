@@ -20,7 +20,7 @@ public class TrainTest {
         int sectionsCount = 2;
         int seats = 5;
         var sections = IntStream.range(0,sectionsCount).mapToObj(value -> new Section(seats)).collect(Collectors.toList());
-        train = new Train(sections, sectionsCount*seats);
+        train = new Train(sections);
     }
 
     @Test

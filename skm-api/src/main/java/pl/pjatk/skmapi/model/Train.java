@@ -29,13 +29,15 @@ public class Train implements DbEntity {
     @Transient
     private final Random rand = new Random();
 
-    public Train(List<Section> sections, int size) {
-//        this.size = size;
+    public Train(List<Section> sections) {
         this.sections = sections;
         this.station = Station.random();
         this.forward = rand.nextBoolean();
-        this.pause = this.pauseCountOnEnd;
     }
+
+    public Train() {
+    }
+
 
     public boolean isFull() {
         for (Section section : sections) {
@@ -52,9 +54,6 @@ public class Train implements DbEntity {
             }
         }
         return count;
-    }
-
-    public Train() {
     }
 
     public Long getId() {
@@ -112,6 +111,9 @@ public class Train implements DbEntity {
         }
         if (move)
             station = station.next(forward);
+
+        System.out.println("Train pause: " + pause);
+
     }
 
     private List<Person> generatePeople() {

@@ -26,9 +26,9 @@ databaseChangeLog:
             - column:
                 name: pause
                 type: int
+                defaultValue: 2
                 constraints:
                   nullable: false
-                  defaultValue: 0
             - column:
                 name: station
                 type: int

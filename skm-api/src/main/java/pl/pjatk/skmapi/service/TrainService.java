@@ -12,14 +12,6 @@ public class TrainService extends CrudService<Train> {
         super(trainRepository);
     }
 
-    public void move() {
-        for (Train train : repository.findAll()) {
-            train.unloadPeople();
-            train.loadPeople();
-            train.nextStation();
-        }
-    }
-
     @Override
     public Train getUpdatedEntity(Train train) throws NotFoundException {
         var currentTrain = repository.findById(train.getId());

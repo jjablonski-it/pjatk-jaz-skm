@@ -18,12 +18,12 @@ public class Simulation {
             for (int j = 0; j < y; j++) {
                 sections.add(new Section(z));
             }
-            trains.add(new Train(sections, y * z));
+            trains.add(new Train(sections));
         }
     }
 
-    public static Simulation getInstance(int x, int y, int z){
-        if(simulation==null){
+    public static Simulation getInstance(int x, int y, int z) {
+        if (simulation == null) {
             simulation = new Simulation(x, y, z);
         }
         return simulation;
