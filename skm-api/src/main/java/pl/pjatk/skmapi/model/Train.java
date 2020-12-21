@@ -11,7 +11,7 @@ import java.util.Random;
 @Table(name = "trains")
 public class Train implements DbEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private boolean forward;
@@ -24,7 +24,7 @@ public class Train implements DbEntity {
 
     @Transient
     private final int pauseCountOnEnd = 2;
-    private int pause = pauseCountOnEnd;
+    private int pause;
 
     @Transient
     private final Random rand = new Random();
@@ -37,6 +37,7 @@ public class Train implements DbEntity {
         this.sections = sections;
         this.station = Station.random();
         this.forward = rand.nextBoolean();
+        this.pause = this.pauseCountOnEnd;
     }
 
     public boolean isFull() {

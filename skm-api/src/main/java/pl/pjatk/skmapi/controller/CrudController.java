@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.pjatk.skmapi.exception.InternalServerException;
+import pl.pjatk.skmapi.exception.NotFoundException;
 import pl.pjatk.skmapi.service.CrudService;
 import pl.pjatk.skmapi.service.DbEntity;
 
@@ -19,21 +19,29 @@ public abstract class CrudController<T extends DbEntity> {
     }
 
     @GetMapping()
-    public ResponseEntity<List<T>> getAll() throws InternalServerException {
+    public ResponseEntity<List<T>> getAll() throws NotFoundException {
         var payload = service.getAll();
         return new ResponseEntity<>(payload, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> getById(@PathVariable("id") long id) {
-        var payload = service.getById(id);
-        return new ResponseEntity<>(payload, HttpStatus.OK);
+    public ResponseEntity<T> getById(@PathVariable("id") long id) throws NotFoundException {
+        try {
+            var payload = service.getById(id);
+            return new ResponseEntity<>(payload, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new NotFoundException();
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<T> deleteById(@PathVariable("id") long id) {
-        var payload = service.getById(id);
-        return new ResponseEntity<>(payload, HttpStatus.OK);
+    public ResponseEntity deleteById(@PathVariable("id") long id) throws NotFoundException {
+        try {
+            service.deleteById(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            throw new NotFoundException();
+        }
     }
 
     @PostMapping
@@ -43,9 +51,9 @@ public abstract class CrudController<T extends DbEntity> {
     }
 
     // IDK
-    @ExceptionHandler(InternalServerException.class)
-    public ResponseEntity handleInternalError(InternalServerException e) {
-        e.printStackTrace();
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity handleInternalError(NotFoundException e) {
+//        e.printStackTrace();
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }

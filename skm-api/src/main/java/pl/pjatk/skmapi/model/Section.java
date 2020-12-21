@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "sections")
 public class Section implements DbEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
