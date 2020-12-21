@@ -12,7 +12,7 @@ import java.util.Random;
 public class Train implements DbEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private boolean forward;
     private Station station;
@@ -60,11 +60,11 @@ public class Train implements DbEntity {
     public Train() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

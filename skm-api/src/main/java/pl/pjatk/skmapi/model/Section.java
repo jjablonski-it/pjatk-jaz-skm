@@ -11,7 +11,7 @@ import java.util.List;
 public class Section implements DbEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "train_id")
@@ -32,11 +32,11 @@ public class Section implements DbEntity {
         return people.size();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
