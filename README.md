@@ -21,5 +21,4 @@ Przerobic nasz symulator SKM tak, by:
       -[x] Controller powinien teraz uzywac ResponseEntity do komunikacji zwrotnej + 
       -[x] odpowiednie HttpStatus (prosta obsluga bledow -> blad = kod 500),
   -[x] pociagi powinny dalej jezdzic, ladowac i rozladowywac ludzi, robic postoje, zawracac na stacjach koncowych.
-  -[ ] Client update
-  -[ ] TESTY
+  -[x] testy +-
