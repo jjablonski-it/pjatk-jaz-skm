@@ -11,34 +11,36 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TrainControllerTest {
+public class SectionControllerTest {
     @Autowired
     MockMvc mockMvc;
 
     @Test
     public void getAll() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/train")).andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.get("/section")).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     public void getById() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/train/1")).andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.get("/section/1")).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     public void getByIdNotFound() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/train/99")).andExpect(MockMvcResultMatchers.status().isNotFound());
+        mockMvc.perform(MockMvcRequestBuilders.get("/section/99")).andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
     public void add() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/train")
+        mockMvc.perform(MockMvcRequestBuilders.post("/section")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
-                               "forward": 1,
-                               "station": 1,
-                               "sections": []
+                               "train": {
+                                   "id": 1
+                               },
+                               "maxSeats": 99,
+                               "people": []
                            }
                         """))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -46,11 +48,12 @@ public class TrainControllerTest {
 
     @Test
     public void addBadRequest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/train")
+        mockMvc.perform(MockMvcRequestBuilders.post("/section")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
-                               "forward": 1
+                               "maxSeats": 99,
+                               "people": []
                            }
                         """))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
@@ -58,22 +61,22 @@ public class TrainControllerTest {
 
     @Test
     public void deleteById() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/train/1")).andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/section/1")).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     public void deleteByIdNotFound() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/train/99")).andExpect(MockMvcResultMatchers.status().isNotFound());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/section/99")).andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
     public void update() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/train")
+        mockMvc.perform(MockMvcRequestBuilders.put("/section")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
                                "id": 1,
-                               "forward": 1
+                               "maxSeats": 1
                            }
                         """))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -81,12 +84,12 @@ public class TrainControllerTest {
 
     @Test
     public void updateNotFound() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/train")
+        mockMvc.perform(MockMvcRequestBuilders.put("/section")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
                                "id": 99,
-                               "forward": 1
+                               "maxSeats": 1
                            }
                         """))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -94,11 +97,11 @@ public class TrainControllerTest {
 
     @Test
     public void updateBadRequest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/train")
+        mockMvc.perform(MockMvcRequestBuilders.put("/section")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
-                               "forward": 1
+                               "maxSeats": 1
                            }
                         """))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
