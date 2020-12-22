@@ -10,9 +10,9 @@ import pl.pjatk.skmapi.repository.TrainRepository;
 
 @Service
 public class SimulationService {
-    private final SectionRepository sectionRepository;
-    private final TrainRepository trainRepository;
-    private final PersonRepository personRepository;
+    private SectionRepository sectionRepository;
+    private TrainRepository trainRepository;
+    private PersonRepository personRepository;
 
     public SimulationService(TrainRepository trainRepository, SectionRepository sectionRepository, PersonRepository personRepository) {
         this.trainRepository = trainRepository;

@@ -16,7 +16,6 @@ import pl.pjatk.skmapi.service.SectionService;
 
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class SectionServiceTest {
     private SectionService sectionService;

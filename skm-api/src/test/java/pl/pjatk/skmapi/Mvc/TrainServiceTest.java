@@ -21,7 +21,6 @@ import pl.pjatk.skmapi.service.TrainService;
 
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class TrainServiceTest {
     private TrainService trainService;
