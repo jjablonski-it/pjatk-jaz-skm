@@ -25,7 +25,7 @@ public class Person implements DbEntity {
 
     public Person(Station dest) {
         Faker faker = new Faker(new Locale("pl-PL"));
-        this.setDest(dest);
+        setDest(dest);
         setName(faker.name().firstName());
         setLastname(lastname = faker.name().lastName());
     }

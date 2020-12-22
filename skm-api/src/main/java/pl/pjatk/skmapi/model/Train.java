@@ -20,8 +20,6 @@ public class Train implements DbEntity {
     @OneToMany(mappedBy = "train", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Section> sections;
 
-//    @Enumerated(EnumType.ORDINAL
-
     @Transient
     private final int pauseCountOnEnd = 2;
     private int pause;
@@ -36,7 +34,7 @@ public class Train implements DbEntity {
     }
 
     public Train() {
-        this.sections = new ArrayList<>();
+//        setSections(new ArrayList<>());
     }
 
     public boolean isFull() {

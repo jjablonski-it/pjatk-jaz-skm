@@ -65,7 +65,7 @@ public class Section implements DbEntity {
     }
 
     public Section() {
-        people = new ArrayList<>();
+
     }
 
     public Section(int maxSeats) {

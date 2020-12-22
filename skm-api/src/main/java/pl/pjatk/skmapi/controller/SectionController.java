@@ -8,8 +8,8 @@ import pl.pjatk.skmapi.service.SectionService;
 
 @RestController
 @RequestMapping("/section")
-public class SectionContoller extends CrudController<Section> {
-    protected SectionContoller(SectionService service) {
+public class SectionController extends CrudController<Section> {
+    protected SectionController(SectionService service) {
         super(service);
     }
 }
