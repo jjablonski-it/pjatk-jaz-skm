@@ -36,8 +36,8 @@ public class Train implements DbEntity {
     }
 
     public Train() {
+        this.sections = new ArrayList<>();
     }
-
 
     public boolean isFull() {
         for (Section section : sections) {
@@ -78,6 +78,7 @@ public class Train implements DbEntity {
     }
 
     public double getTakenPercent() {
+        if (getSize() == 0) return 100.0f;
         return (1.0 * getPeopleCount() / getSize()) * 100.0;
     }
 
