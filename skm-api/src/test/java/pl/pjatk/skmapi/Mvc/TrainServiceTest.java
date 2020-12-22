@@ -1,5 +1,7 @@
 package pl.pjatk.skmapi.Mvc;
 
+import org.aspectj.weaver.ast.Not;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -64,5 +66,34 @@ public class TrainServiceTest {
         Mockito.verify(trainRepository).deleteById(id);
     }
 
+    @Test
+    public void update() throws BadRequestException, NotFoundException {
+        Long id = 1L;
+        Train train = new Train();
+        train.setId(id);
 
+        Optional<Train> optTrain = Optional.of(train);
+
+        Mockito.when(trainRepository.findById(id)).thenReturn(optTrain);
+
+        trainService.update(train);
+        Mockito.verify(trainRepository).save(train);
+    }
+
+    @Test()
+    public void updateThrowsBadRequestOnEmptyId() {
+        Train train = new Train();
+        Assert.assertThrows(BadRequestException.class, () -> {
+            trainService.update(train);
+        });
+    }
+
+    @Test()
+    public void updateThrowsNotFoundOnWrongId() {
+        Train train = new Train();
+        train.setId(1L);
+        Assert.assertThrows(NotFoundException.class, () -> {
+            trainService.update(train);
+        });
+    }
 }
