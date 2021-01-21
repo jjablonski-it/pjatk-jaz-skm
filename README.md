@@ -25,16 +25,17 @@ Przerobic nasz symulator SKM tak, by:
   - [x] pociagi powinny dalej jezdzic, ladowac i rozladowywac ludzi, robic postoje, zawracac na stacjach koncowych.
   - [x] testy +-
   ---
-  - [ ] nowy changeset ktory pomoze zrealizowac autentykacje i autoryzacje
-    - [ ] login     
-    - [ ] password
-    - [ ] authorities
-  - [ ] sytuacje obslugi uzytkownikow
-    - [ ] nieznany uzytkownik - brak dostepu do aplikacji
-    - [ ] znany, zwykly uzytkownik - dostep do aplikacji ograniczony do pobierania informacji
-    - [ ] admin - mozliwosc zarzadzania uzytkownikami
-  - [ ] user controller dla admina
-    - [ ] dodawania uzytkownikow
+  - [x] nowy changeset ktory pomoze zrealizowac autentykacje i autoryzacje
+    - [x] login     
+    - [x] password
+    - [x] authorities
+  - [x] sytuacje obslugi uzytkownikow
+    - [x] nieznany uzytkownik - brak dostepu do aplikacji
+    - [x] znany, zwykly uzytkownik - dostep do aplikacji ograniczony do pobierania informacji
+    - [x] admin - mozliwosc zarzadzania uzytkownikami
+  - [x] user controller dla admina
+    - [x] dodawania uzytkownikow
     - [ ] podyfikacja uprawnien
-    - [ ] usuwanie
-  - [ ] JWT do autentykacji i autoryzacji uzytkownikow
+    - [x] usuwanie
+  - [x] JWT do autentykacji i autoryzacji uzytkownikow
+  - [ ] testy
