@@ -1,12 +1,15 @@
 package pl.pjatk.skmapi.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import pl.pjatk.skmapi.service.DbEntity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
-public class User implements DbEntity {
+public class User implements DbEntity, UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,11 +18,6 @@ public class User implements DbEntity {
     private String authority;
 
     public User() {
-    }
-
-    @Override
-    public Long getId() {
-        return id;
     }
 
     public void setId(Long id) {
@@ -34,10 +32,6 @@ public class User implements DbEntity {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -48,5 +42,45 @@ public class User implements DbEntity {
 
     public void setAuthority(String authority) {
         this.authority = authority;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Long getId() {
+        return null;
     }
 }
