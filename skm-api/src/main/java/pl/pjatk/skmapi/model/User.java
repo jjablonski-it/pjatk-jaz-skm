@@ -28,6 +28,11 @@ public class User implements DbEntity, UserDetails {
         this.authority = authority;
     }
 
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     public User() {
     }
 
@@ -45,7 +50,12 @@ public class User implements DbEntity, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(this.authority.split(",")).map(String::trim).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return Arrays.stream(this.authority.split(",")).map(String::trim).map(SimpleGrantedAuthority::new).filter(authority -> authority != null).collect(Collectors.toList());
+    }
+
+    public void addAuthority(GrantedAuthority authority) {
+        String trimmedAuthority = authority.getAuthority().trim();
+        this.authority = this.authority + "," + trimmedAuthority;
     }
 
     @Override

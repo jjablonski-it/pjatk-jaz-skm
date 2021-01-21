@@ -1,6 +1,7 @@
 package pl.pjatk.skmapi.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,8 +30,20 @@ public class UserService extends CrudService<User> implements UserDetailsService
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findAll().stream().filter(user -> user.getUsername().equals(username)).findAny().orElseThrow(() -> new UsernameNotFoundException("User " + username + " does not exist"));
+    public UserDetails loadUserByUsername(String username){
+        return repository.findAll().stream().filter(user -> user.getUsername().equals(username)).findAny().orElse(null);
+//        .orElseThrow(() -> new UsernameNotFoundException("User " + username + " does not exist")
+    }
+
+    @Override
+    public User add(User user) {
+        GrantedAuthority defaultAuthority = () -> "ROLE_USER";
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+
+        user.setPassword(encodedPassword);
+        user.addAuthority(defaultAuthority);
+
+        return super.add(user);
     }
 
     public PasswordEncoder getPasswordEncoder() {
