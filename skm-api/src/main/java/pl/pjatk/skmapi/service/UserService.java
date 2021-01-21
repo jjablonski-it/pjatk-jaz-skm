@@ -63,4 +63,8 @@ public class UserService extends CrudService<User> implements UserDetailsService
     public PasswordEncoder getPasswordEncoder() {
         return passwordEncoder;
     }
+
+    public void save(User user){
+        repository.save(user);
+    }
 }
