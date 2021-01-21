@@ -7,6 +7,6 @@ databaseChangeLog:
       file: db/changelog/data/init-data-insert-sections.yml
 #      AUTH
   - include:
-      file: db/changelog/table/AUTH-tables.yml
+      file: db/changelog/table/auth-tables.yml
 #  - include:
 #      file: db/changelog/data/init-data-insert-trains.yml
