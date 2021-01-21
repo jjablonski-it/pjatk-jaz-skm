@@ -50,12 +50,14 @@ public class User implements DbEntity, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(this.authority.split(",")).map(String::trim).map(SimpleGrantedAuthority::new).filter(authority -> authority != null).collect(Collectors.toList());
+        System.out.println(authority);
+        return Arrays.stream(this.authority.split(",")).map(String::trim).filter(authority -> !authority.equals("")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     public void addAuthority(GrantedAuthority authority) {
         String trimmedAuthority = authority.getAuthority().trim();
-        this.authority = this.authority + "," + trimmedAuthority;
+        String currentAuthority = this.authority == null ? "" :(this.authority + ",");
+        this.authority = currentAuthority + trimmedAuthority;
     }
 
     @Override
