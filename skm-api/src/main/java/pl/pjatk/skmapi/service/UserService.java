@@ -31,7 +31,16 @@ public class UserService extends CrudService<User> implements UserDetailsService
 
     @Override
     public User getUpdatedEntity(User user) throws NotFoundException {
-        return null;
+        var currentUser = repository.findById(user.getId());
+        if (currentUser.isEmpty()) throw new NotFoundException();
+
+        var currentUserObj = currentUser.get();
+
+        if(user.getUsername() != null){
+            currentUserObj.setLogin(user.getUsername());
+        }
+
+        return currentUserObj;
     }
 
     @Override
