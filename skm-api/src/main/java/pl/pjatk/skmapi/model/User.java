@@ -56,8 +56,18 @@ public class User implements DbEntity, UserDetails {
 
     public void addAuthority(GrantedAuthority authority) {
         String trimmedAuthority = authority.getAuthority().trim();
-        String currentAuthority = this.authority == null ? "" :(this.authority + ",");
+        String currentAuthority = this.authority == null ? "" : (this.authority + ",");
         this.authority = currentAuthority + trimmedAuthority;
+    }
+
+    public void removeAuthority(GrantedAuthority authority) {
+        String auth = authority.getAuthority().trim();
+        String newAuthority = this.authority.replace(auth, "").replace(",,", "").trim();
+        this.authority = newAuthority;
+    }
+
+    public void setStringAuthority(String authority) {
+        this.authority = authority;
     }
 
     @Override
