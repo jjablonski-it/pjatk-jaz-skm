@@ -45,7 +45,7 @@ public class User implements DbEntity, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(this.authority.split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return Arrays.stream(this.authority.split(",")).map(String::trim).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     @Override
