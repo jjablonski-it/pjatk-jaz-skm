@@ -19,9 +19,11 @@ public class UserService extends CrudService<User> implements UserDetailsService
         super(repository);
         this.passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
+        // Test admin
+        repository.save( new User("admin", passwordEncoder.encode("123"), "ROLE_USER"));
+
         // Test user
-        var encodedPassword = passwordEncoder.encode("123");
-        repository.save( new User("admin", encodedPassword, "ROLE_ADMIN,ROLE_USER"));
+        repository.save( new User("user", passwordEncoder.encode("123"), "ROLE_ADMIN,ROLE_USER"));
     }
 
     @Override
