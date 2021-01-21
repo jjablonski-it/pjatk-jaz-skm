@@ -14,7 +14,7 @@ import pl.pjatk.skmapi.model.User;
 public class UserService extends CrudService<User> implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(JpaRepository<User, Long> repository, PasswordEncoder passwordEncoder) {
+    public UserService(JpaRepository<User, Long> repository) {
         super(repository);
         this.passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
