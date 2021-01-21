@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import pl.pjatk.skmapi.service.DbEntity;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,7 +45,7 @@ public class User implements DbEntity, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> this.authority);
+        return Arrays.stream(this.authority.split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     @Override
