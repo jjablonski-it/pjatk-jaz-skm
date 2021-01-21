@@ -1,11 +1,15 @@
 package pl.pjatk.skmapi.model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import pl.pjatk.skmapi.service.DbEntity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -17,15 +21,17 @@ public class User implements DbEntity, UserDetails {
     private String password;
     private String authority;
 
+    public User(String login, String password, String authority) {
+        this.login = login;
+        this.password = password;
+        this.authority = authority;
+    }
+
     public User() {
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public void setLogin(String login) {
@@ -36,42 +42,34 @@ public class User implements DbEntity, UserDetails {
         this.password = password;
     }
 
-    public String getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(() -> this.authority);
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.login;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
@@ -81,6 +79,6 @@ public class User implements DbEntity, UserDetails {
 
     @Override
     public Long getId() {
-        return null;
+        return this.id;
     }
 }

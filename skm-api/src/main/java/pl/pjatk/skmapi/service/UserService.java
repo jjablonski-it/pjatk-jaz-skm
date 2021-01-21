@@ -17,6 +17,10 @@ public class UserService extends CrudService<User> implements UserDetailsService
     public UserService(JpaRepository<User, Long> repository) {
         super(repository);
         this.passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+        // Test user
+        var encodedPassword = passwordEncoder.encode("123");
+        repository.save( new User("admin", encodedPassword, "ROLE_USER"));
     }
 
     @Override
