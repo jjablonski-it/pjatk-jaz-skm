@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-01-20-auth-table
+      author: jakub.jablonski
+      changes:
+        - createTable:
+            - tableName: users
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: pk_user
+            - column:
+                name: login
+                type: varchar(50)
+                constraints:
+                  nullable: false
+            - column:
+                name: password
+                type: varchar(128)
+                constraints:
+                  nullable: false
+            - column:
+                name: authority
+                type: varchar(50)
