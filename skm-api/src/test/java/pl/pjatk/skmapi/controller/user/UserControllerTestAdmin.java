@@ -132,4 +132,46 @@ public class UserControllerTestAdmin {
                         """))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
+
+    @Test
+    public void addAuthority() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/user/1/auth/ROLE_ADMIN")
+                .header(HEADER_STRING, TOKEN))
+                .andExpect(MockMvcResultMatchers.status().isAccepted());
+    }
+
+    @Test
+    public void removeAuthority() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/user/1/auth/ROLE_ADMIN")
+                .header(HEADER_STRING, TOKEN))
+                .andExpect(MockMvcResultMatchers.status().isAccepted());
+    }
+
+    @Test
+    public void setAuthority() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/user/1/auth/ROLE_ADMIN")
+                .header(HEADER_STRING, TOKEN))
+                .andExpect(MockMvcResultMatchers.status().isAccepted());
+    }
+
+    @Test
+    public void addAuthorityNotFound() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/user/9/auth/ROLE_ADMIN")
+                .header(HEADER_STRING, TOKEN))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    public void removeAuthorityNotFound() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/user/9/auth/ROLE_ADMIN")
+                .header(HEADER_STRING, TOKEN))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    public void setAuthorityNotFound() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/user/9/auth/ROLE_ADMIN")
+                .header(HEADER_STRING, TOKEN))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
 }
