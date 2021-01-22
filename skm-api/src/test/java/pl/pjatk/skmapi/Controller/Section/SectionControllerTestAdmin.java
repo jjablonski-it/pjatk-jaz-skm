@@ -1,13 +1,10 @@
 package pl.pjatk.skmapi.Controller.Section;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +19,7 @@ import static pl.pjatk.skmapi.security.util.SecurityConstants.TOKEN_PREFIX;
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class SectionControllerTestUser {
+public class SectionControllerTestAdmin {
     @Autowired
     MockMvc mockMvc;
 
@@ -33,7 +30,7 @@ public class SectionControllerTestUser {
         var response = mockMvc.perform(MockMvcRequestBuilders.get("/login").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
-                             "login": "user",
+                             "login": "admin",
                              "password": "123"
                            }
                         """)).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
@@ -71,7 +68,7 @@ public class SectionControllerTestUser {
                                "people": []
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -85,17 +82,17 @@ public class SectionControllerTestUser {
                                "people": []
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
     @Test
     public void deleteById() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/section/1").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isForbidden());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/section/1").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     public void deleteByIdNotFound() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/section/99").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isForbidden());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/section/99").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -109,7 +106,7 @@ public class SectionControllerTestUser {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -123,7 +120,7 @@ public class SectionControllerTestUser {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -136,6 +133,6 @@ public class SectionControllerTestUser {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 }
