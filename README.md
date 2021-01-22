@@ -35,7 +35,7 @@ Przerobic nasz symulator SKM tak, by:
     - [x] admin - mozliwosc zarzadzania uzytkownikami
   - [x] user controller dla admina
     - [x] dodawania uzytkownikow
-    - [ ] modyfikacja uprawnien
+    - [x] modyfikacja uprawnien
     - [x] usuwanie
   - [x] JWT do autentykacji i autoryzacji uzytkownikow
-  - [ ] testy
+  - [x] testy
