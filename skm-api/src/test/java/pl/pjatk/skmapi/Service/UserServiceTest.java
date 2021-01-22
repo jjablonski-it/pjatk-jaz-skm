@@ -41,9 +41,10 @@ public class UserServiceTest {
         Mockito.verify(userRepository).findById(id);
     }
 
-//    @Test
+    @Test
     public void add() {
         User user = new User();
+        user.setPassword("pwd");
 
         userService.add(user);
         Mockito.verify(userRepository).save(user);
