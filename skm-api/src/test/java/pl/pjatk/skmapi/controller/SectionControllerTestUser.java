@@ -1,4 +1,4 @@
-package pl.pjatk.skmapi.Controller.Section;
+package pl.pjatk.skmapi.controller;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ import static pl.pjatk.skmapi.security.util.SecurityConstants.TOKEN_PREFIX;
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class SectionControllerTestPrivileged {
+public class SectionControllerTestUser {
     @Autowired
     MockMvc mockMvc;
 
@@ -28,7 +28,7 @@ public class SectionControllerTestPrivileged {
         var response = mockMvc.perform(MockMvcRequestBuilders.get("/login").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
-                             "login": "privileged",
+                             "login": "user",
                              "password": "123"
                            }
                         """)).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
@@ -66,7 +66,7 @@ public class SectionControllerTestPrivileged {
                                "people": []
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -80,17 +80,17 @@ public class SectionControllerTestPrivileged {
                                "people": []
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
     public void deleteById() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/section/1").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/section/1").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
     public void deleteByIdNotFound() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/section/99").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isNotFound());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/section/99").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class SectionControllerTestPrivileged {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -118,7 +118,7 @@ public class SectionControllerTestPrivileged {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isNotFound());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -131,6 +131,6 @@ public class SectionControllerTestPrivileged {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 }

@@ -1,4 +1,4 @@
-package pl.pjatk.skmapi.Basic;
+package pl.pjatk.skmapi.model;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

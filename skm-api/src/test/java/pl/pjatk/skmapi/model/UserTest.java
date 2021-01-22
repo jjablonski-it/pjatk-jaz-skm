@@ -1,10 +1,9 @@
-package pl.pjatk.skmapi.Basic;
+package pl.pjatk.skmapi.model;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.GrantedAuthority;
-import pl.pjatk.skmapi.model.*;
 
 import java.util.List;
 import java.util.stream.Collectors;

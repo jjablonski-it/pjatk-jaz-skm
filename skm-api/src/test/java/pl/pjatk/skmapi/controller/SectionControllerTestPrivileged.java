@@ -1,8 +1,6 @@
-package pl.pjatk.skmapi.Controller.Section;
+package pl.pjatk.skmapi.controller;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +11,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import javax.transaction.Transactional;
+
 import static pl.pjatk.skmapi.security.util.SecurityConstants.HEADER_STRING;
 import static pl.pjatk.skmapi.security.util.SecurityConstants.TOKEN_PREFIX;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class SectionControllerTestAdmin {
+@Transactional
+public class SectionControllerTestPrivileged {
     @Autowired
     MockMvc mockMvc;
 
@@ -30,7 +31,7 @@ public class SectionControllerTestAdmin {
         var response = mockMvc.perform(MockMvcRequestBuilders.get("/login").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
-                             "login": "admin",
+                             "login": "privileged",
                              "password": "123"
                            }
                         """)).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();

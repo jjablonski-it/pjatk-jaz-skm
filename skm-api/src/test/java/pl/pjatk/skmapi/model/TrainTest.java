@@ -1,13 +1,8 @@
-package pl.pjatk.skmapi.Basic;
+package pl.pjatk.skmapi.model;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import pl.pjatk.skmapi.model.Person;
-import pl.pjatk.skmapi.model.Section;
-import pl.pjatk.skmapi.model.Station;
-import pl.pjatk.skmapi.model.Train;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

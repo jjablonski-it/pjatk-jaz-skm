@@ -1,18 +1,15 @@
-package pl.pjatk.skmapi.Service;
+package pl.pjatk.skmapi.service;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import pl.pjatk.skmapi.exception.BadRequestException;
 import pl.pjatk.skmapi.exception.NotFoundException;
 import pl.pjatk.skmapi.model.Section;
 import pl.pjatk.skmapi.repository.SectionRepository;
-import pl.pjatk.skmapi.service.SectionService;
 
 import java.util.Optional;
 

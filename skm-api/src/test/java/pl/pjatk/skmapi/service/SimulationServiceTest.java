@@ -1,4 +1,4 @@
-package pl.pjatk.skmapi.Service;
+package pl.pjatk.skmapi.service;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +8,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import pl.pjatk.skmapi.repository.PersonRepository;
 import pl.pjatk.skmapi.repository.SectionRepository;
 import pl.pjatk.skmapi.repository.TrainRepository;
-import pl.pjatk.skmapi.service.SimulationService;
 
 @SpringBootTest
 public class SimulationServiceTest {

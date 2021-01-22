@@ -1,4 +1,4 @@
-package pl.pjatk.skmapi.Service;
+package pl.pjatk.skmapi.service;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +10,6 @@ import pl.pjatk.skmapi.exception.BadRequestException;
 import pl.pjatk.skmapi.exception.NotFoundException;
 import pl.pjatk.skmapi.model.User;
 import pl.pjatk.skmapi.repository.UserRepository;
-import pl.pjatk.skmapi.service.UserService;
 
 import java.util.Optional;
 

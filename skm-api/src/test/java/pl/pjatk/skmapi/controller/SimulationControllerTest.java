@@ -1,4 +1,4 @@
-package pl.pjatk.skmapi.Controller;
+package pl.pjatk.skmapi.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

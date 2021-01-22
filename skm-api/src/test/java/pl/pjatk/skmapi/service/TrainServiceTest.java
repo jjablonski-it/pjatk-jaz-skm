@@ -1,23 +1,15 @@
-package pl.pjatk.skmapi.Service;
+package pl.pjatk.skmapi.service;
 
-import org.aspectj.weaver.ast.Not;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import pl.pjatk.skmapi.exception.BadRequestException;
 import pl.pjatk.skmapi.exception.NotFoundException;
 import pl.pjatk.skmapi.model.Train;
 import pl.pjatk.skmapi.repository.TrainRepository;
-import pl.pjatk.skmapi.service.TrainService;
 
 import java.util.Optional;
 

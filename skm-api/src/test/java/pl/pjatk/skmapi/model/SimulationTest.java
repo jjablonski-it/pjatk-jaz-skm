@@ -1,11 +1,8 @@
-package pl.pjatk.skmapi.Basic;
+package pl.pjatk.skmapi.model;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import pl.pjatk.skmapi.model.Simulation;
 
 class SimulationTest {
 	Simulation sim;

@@ -1,9 +1,7 @@
-package pl.pjatk.skmapi.Basic;
+package pl.pjatk.skmapi.model;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import pl.pjatk.skmapi.model.Station;
 
 public class StationTest {
     @Test
