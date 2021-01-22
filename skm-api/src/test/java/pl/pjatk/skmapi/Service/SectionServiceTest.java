@@ -1,4 +1,4 @@
-package pl.pjatk.skmapi.Mvc;
+package pl.pjatk.skmapi.Service;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;

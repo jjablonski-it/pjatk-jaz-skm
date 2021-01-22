@@ -1,4 +1,4 @@
-package pl.pjatk.skmapi.Mvc;
+package pl.pjatk.skmapi.Service;
 
 import org.aspectj.weaver.ast.Not;
 import org.junit.Assert;
