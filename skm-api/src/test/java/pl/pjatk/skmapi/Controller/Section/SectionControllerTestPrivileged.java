@@ -66,7 +66,7 @@ public class SectionControllerTestPrivileged {
                                "people": []
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -80,17 +80,17 @@ public class SectionControllerTestPrivileged {
                                "people": []
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
     @Test
     public void deleteById() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/section/1").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isForbidden());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/section/1").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     public void deleteByIdNotFound() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/section/99").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isForbidden());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/section/99").header(HEADER_STRING, TOKEN)).andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class SectionControllerTestPrivileged {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -118,7 +118,7 @@ public class SectionControllerTestPrivileged {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
@@ -131,6 +131,6 @@ public class SectionControllerTestPrivileged {
                                "maxSeats": 1
                            }
                         """))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 }
